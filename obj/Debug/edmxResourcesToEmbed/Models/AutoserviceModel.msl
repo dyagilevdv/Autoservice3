@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище db_autoserviceModelContainer" CdmEntityContainer="db_autoserviceEntities">
+    <EntitySetMapping Name="Automobiles">
+      <EntityTypeMapping TypeName="db_autoserviceModel.Automobiles">
+        <MappingFragment StoreEntitySet="Automobiles">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="gosnumber" ColumnName="gosnumber" />
+          <ScalarProperty Name="id_owner" ColumnName="id_owner" />
+          <ScalarProperty Name="VIN" ColumnName="VIN" />
+          <ScalarProperty Name="id_model" ColumnName="id_model" />
+          <ScalarProperty Name="id_color" ColumnName="id_color" />
+          <ScalarProperty Name="id_fuel" ColumnName="id_fuel" />
+          <ScalarProperty Name="id_transmission" ColumnName="id_transmission" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Colors">
+      <EntityTypeMapping TypeName="db_autoserviceModel.Colors">
+        <MappingFragment StoreEntitySet="Colors">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="color" ColumnName="color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fuel_types">
+      <EntityTypeMapping TypeName="db_autoserviceModel.Fuel_types">
+        <MappingFragment StoreEntitySet="Fuel_types">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fuel_type" ColumnName="fuel_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Models">
+      <EntityTypeMapping TypeName="db_autoserviceModel.Models">
+        <MappingFragment StoreEntitySet="Models">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="brand" ColumnName="brand" />
+          <ScalarProperty Name="model" ColumnName="model" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Owners">
+      <EntityTypeMapping TypeName="db_autoserviceModel.Owners">
+        <MappingFragment StoreEntitySet="Owners">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+          <ScalarProperty Name="id_town" ColumnName="id_town" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reasons">
+      <EntityTypeMapping TypeName="db_autoserviceModel.Reasons">
+        <MappingFragment StoreEntitySet="Reasons">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="reason" ColumnName="reason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="db_autoserviceModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="role_name" ColumnName="role_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="db_autoserviceModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="statusname" ColumnName="statusname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="db_autoserviceModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Towns">
+      <EntityTypeMapping TypeName="db_autoserviceModel.Towns">
+        <MappingFragment StoreEntitySet="Towns">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="town" ColumnName="town" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transmissions">
+      <EntityTypeMapping TypeName="db_autoserviceModel.Transmissions">
+        <MappingFragment StoreEntitySet="Transmissions">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="transmission" ColumnName="transmission" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="db_autoserviceModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Work_price">
+      <EntityTypeMapping TypeName="db_autoserviceModel.Work_price">
+        <MappingFragment StoreEntitySet="Work_price">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name_of_work" ColumnName="name_of_work" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zakaz">
+      <EntityTypeMapping TypeName="db_autoserviceModel.Zakaz">
+        <MappingFragment StoreEntitySet="Zakaz">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nomer_zakaza" ColumnName="nomer_zakaza" />
+          <ScalarProperty Name="id_automobile" ColumnName="id_automobile" />
+          <ScalarProperty Name="date_remont" ColumnName="date_remont" />
+          <ScalarProperty Name="id_status" ColumnName="id_status" />
+          <ScalarProperty Name="id_reason" ColumnName="id_reason" />
+          <ScalarProperty Name="probeg" ColumnName="probeg" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="zapchasti_zakaza" ColumnName="zapchasti_zakaza" />
+          <ScalarProperty Name="uslugi_zakaza" ColumnName="uslugi_zakaza" />
+          <ScalarProperty Name="kolichestvo" ColumnName="kolichestvo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zapchasti">
+      <EntityTypeMapping TypeName="db_autoserviceModel.Zapchasti">
+        <MappingFragment StoreEntitySet="Zapchasti">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="partname" ColumnName="partname" />
+          <ScalarProperty Name="manufacturer" ColumnName="manufacturer" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="year" ColumnName="year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Roleuser" TypeName="db_autoserviceModel.Roleuser" StoreEntitySet="Roleuser">
+      <EndProperty Name="Roles">
+        <ScalarProperty Name="id" ColumnName="role_id" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="id" ColumnName="user_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_autoserviceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Automobiles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="gosnumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="id_owner" Type="Int32" />
+    <Property Name="VIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="id_model" Type="Int32" />
+    <Property Name="id_color" Type="Int32" />
+    <Property Name="id_fuel" Type="Int32" />
+    <Property Name="id_transmission" Type="Int32" />
+    <NavigationProperty Name="Colors" Relationship="Self.FK_Automobiles_Colors" FromRole="Automobiles" ToRole="Colors" />
+    <NavigationProperty Name="Fuel_types" Relationship="Self.FK_Automobiles_Fuel_types" FromRole="Automobiles" ToRole="Fuel_types" />
+    <NavigationProperty Name="Models" Relationship="Self.FK_Automobiles_Models" FromRole="Automobiles" ToRole="Models" />
+    <NavigationProperty Name="Owners" Relationship="Self.FK_Automobiles_Owners" FromRole="Automobiles" ToRole="Owners" />
+    <NavigationProperty Name="Transmissions" Relationship="Self.FK_Automobiles_Transmissions" FromRole="Automobiles" ToRole="Transmissions" />
+    <NavigationProperty Name="Zakaz" Relationship="Self.FK_Zakaz_Automobiles" FromRole="Automobiles" ToRole="Zakaz" />
+  </EntityType>
+  <EntityType Name="Colors">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Automobiles" Relationship="Self.FK_Automobiles_Colors" FromRole="Colors" ToRole="Automobiles" />
+  </EntityType>
+  <EntityType Name="Fuel_types">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fuel_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Automobiles" Relationship="Self.FK_Automobiles_Fuel_types" FromRole="Fuel_types" ToRole="Automobiles" />
+  </EntityType>
+  <EntityType Name="Models">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Automobiles" Relationship="Self.FK_Automobiles_Models" FromRole="Models" ToRole="Automobiles" />
+  </EntityType>
+  <EntityType Name="Owners">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="id_town" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Automobiles" Relationship="Self.FK_Automobiles_Owners" FromRole="Owners" ToRole="Automobiles" />
+    <NavigationProperty Name="Towns" Relationship="Self.FK_Owners_Towns" FromRole="Owners" ToRole="Towns" />
+  </EntityType>
+  <EntityType Name="Reasons">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="reason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Zakaz" Relationship="Self.FK_Zakaz_Reasons" FromRole="Reasons" ToRole="Zakaz" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.Roleuser" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="statusname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Zakaz" Relationship="Self.FK_Zakaz_Status" FromRole="Status" ToRole="Zakaz" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Towns">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="town" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Owners" Relationship="Self.FK_Owners_Towns" FromRole="Towns" ToRole="Owners" />
+  </EntityType>
+  <EntityType Name="Transmissions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="transmission" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Automobiles" Relationship="Self.FK_Automobiles_Transmissions" FromRole="Transmissions" ToRole="Automobiles" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Zakaz" Relationship="Self.FK_Zakaz_Users" FromRole="Users" ToRole="Zakaz" />
+    <NavigationProperty Name="Roles" Relationship="Self.Roleuser" FromRole="Users" ToRole="Roles" />
+  </EntityType>
+  <EntityType Name="Work_price">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_of_work" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Decimal" Precision="6" Scale="0" />
+    <NavigationProperty Name="Zakaz" Relationship="Self.FK_Zakaz_Uslugi_zakaza" FromRole="Work_price" ToRole="Zakaz" />
+  </EntityType>
+  <EntityType Name="Zakaz">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomer_zakaza" Type="Int32" Nullable="false" />
+    <Property Name="id_automobile" Type="Int32" Nullable="false" />
+    <Property Name="date_remont" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_status" Type="Int32" Nullable="false" />
+    <Property Name="id_reason" Type="Int32" Nullable="false" />
+    <Property Name="probeg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="zapchasti_zakaza" Type="Int32" />
+    <Property Name="uslugi_zakaza" Type="Int32" Nullable="false" />
+    <Property Name="kolichestvo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Automobiles" Relationship="Self.FK_Zakaz_Automobiles" FromRole="Zakaz" ToRole="Automobiles" />
+    <NavigationProperty Name="Reasons" Relationship="Self.FK_Zakaz_Reasons" FromRole="Zakaz" ToRole="Reasons" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Zakaz_Status" FromRole="Zakaz" ToRole="Status" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Zakaz_Users" FromRole="Zakaz" ToRole="Users" />
+    <NavigationProperty Name="Work_price" Relationship="Self.FK_Zakaz_Uslugi_zakaza" FromRole="Zakaz" ToRole="Work_price" />
+    <NavigationProperty Name="Zapchasti" Relationship="Self.FK_Zakaz_Zapchasti_zakaza" FromRole="Zakaz" ToRole="Zapchasti" />
+  </EntityType>
+  <EntityType Name="Zapchasti">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="partname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="year" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Zakaz" Relationship="Self.FK_Zakaz_Zapchasti_zakaza" FromRole="Zapchasti" ToRole="Zakaz" />
+  </EntityType>
+  <Association Name="FK_Automobiles_Colors">
+    <End Role="Colors" Type="Self.Colors" Multiplicity="0..1" />
+    <End Role="Automobiles" Type="Self.Automobiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Colors">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Automobiles">
+        <PropertyRef Name="id_color" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Automobiles_Fuel_types">
+    <End Role="Fuel_types" Type="Self.Fuel_types" Multiplicity="0..1" />
+    <End Role="Automobiles" Type="Self.Automobiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fuel_types">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Automobiles">
+        <PropertyRef Name="id_fuel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Automobiles_Models">
+    <End Role="Models" Type="Self.Models" Multiplicity="0..1" />
+    <End Role="Automobiles" Type="Self.Automobiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Models">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Automobiles">
+        <PropertyRef Name="id_model" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Automobiles_Owners">
+    <End Role="Owners" Type="Self.Owners" Multiplicity="0..1" />
+    <End Role="Automobiles" Type="Self.Automobiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owners">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Automobiles">
+        <PropertyRef Name="id_owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Automobiles_Transmissions">
+    <End Role="Transmissions" Type="Self.Transmissions" Multiplicity="0..1" />
+    <End Role="Automobiles" Type="Self.Automobiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transmissions">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Automobiles">
+        <PropertyRef Name="id_transmission" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Automobiles">
+    <End Role="Automobiles" Type="Self.Automobiles" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Automobiles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="id_automobile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Owners_Towns">
+    <End Role="Towns" Type="Self.Towns" Multiplicity="0..1" />
+    <End Role="Owners" Type="Self.Owners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Towns">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Owners">
+        <PropertyRef Name="id_town" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Reasons">
+    <End Role="Reasons" Type="Self.Reasons" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reasons">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="id_reason" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="id_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Uslugi_zakaza">
+    <End Role="Work_price" Type="Self.Work_price" Multiplicity="1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Work_price">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="uslugi_zakaza" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zakaz_Zapchasti_zakaza">
+    <End Role="Zapchasti" Type="Self.Zapchasti" Multiplicity="0..1" />
+    <End Role="Zakaz" Type="Self.Zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zapchasti">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Zakaz">
+        <PropertyRef Name="zapchasti_zakaza" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Roleuser">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="db_autoserviceEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Automobiles" EntityType="Self.Automobiles" />
+    <EntitySet Name="Colors" EntityType="Self.Colors" />
+    <EntitySet Name="Fuel_types" EntityType="Self.Fuel_types" />
+    <EntitySet Name="Models" EntityType="Self.Models" />
+    <EntitySet Name="Owners" EntityType="Self.Owners" />
+    <EntitySet Name="Reasons" EntityType="Self.Reasons" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Towns" EntityType="Self.Towns" />
+    <EntitySet Name="Transmissions" EntityType="Self.Transmissions" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="Work_price" EntityType="Self.Work_price" />
+    <EntitySet Name="Zakaz" EntityType="Self.Zakaz" />
+    <EntitySet Name="Zapchasti" EntityType="Self.Zapchasti" />
+    <AssociationSet Name="FK_Automobiles_Colors" Association="Self.FK_Automobiles_Colors">
+      <End Role="Colors" EntitySet="Colors" />
+      <End Role="Automobiles" EntitySet="Automobiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Automobiles_Fuel_types" Association="Self.FK_Automobiles_Fuel_types">
+      <End Role="Fuel_types" EntitySet="Fuel_types" />
+      <End Role="Automobiles" EntitySet="Automobiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Automobiles_Models" Association="Self.FK_Automobiles_Models">
+      <End Role="Models" EntitySet="Models" />
+      <End Role="Automobiles" EntitySet="Automobiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Automobiles_Owners" Association="Self.FK_Automobiles_Owners">
+      <End Role="Owners" EntitySet="Owners" />
+      <End Role="Automobiles" EntitySet="Automobiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Automobiles_Transmissions" Association="Self.FK_Automobiles_Transmissions">
+      <End Role="Transmissions" EntitySet="Transmissions" />
+      <End Role="Automobiles" EntitySet="Automobiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Automobiles" Association="Self.FK_Zakaz_Automobiles">
+      <End Role="Automobiles" EntitySet="Automobiles" />
+      <End Role="Zakaz" EntitySet="Zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Owners_Towns" Association="Self.FK_Owners_Towns">
+      <End Role="Towns" EntitySet="Towns" />
+      <End Role="Owners" EntitySet="Owners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Reasons" Association="Self.FK_Zakaz_Reasons">
+      <End Role="Reasons" EntitySet="Reasons" />
+      <End Role="Zakaz" EntitySet="Zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Status" Association="Self.FK_Zakaz_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Zakaz" EntitySet="Zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Users" Association="Self.FK_Zakaz_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Zakaz" EntitySet="Zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Uslugi_zakaza" Association="Self.FK_Zakaz_Uslugi_zakaza">
+      <End Role="Work_price" EntitySet="Work_price" />
+      <End Role="Zakaz" EntitySet="Zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zakaz_Zapchasti_zakaza" Association="Self.FK_Zakaz_Zapchasti_zakaza">
+      <End Role="Zapchasti" EntitySet="Zapchasti" />
+      <End Role="Zakaz" EntitySet="Zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="Roleuser" Association="Self.Roleuser">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
